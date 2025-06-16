@@ -1,24 +1,513 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>dark-portfolio-elegance</title>
-    <meta name="description" content="Lovable Generated Project" />
-    <meta name="author" content="Lovable" />
+    <title>Mubdiu Mohammad Lam - Portfolio</title>
+    <meta name="description" content="Personal Portfolio of Mubdiu Mohammad Lam" />
+    <meta name="author" content="Mubdiu Mohammad Lam" />
 
-    <meta property="og:title" content="dark-portfolio-elegance" />
-    <meta property="og:description" content="Lovable Generated Project" />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <meta property="og:title" content="Mubdiu Mohammad Lam - Portfolio" />
+    <meta property="og:description" content="Personal Portfolio of Mubdiu Mohammad Lam" />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
 
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@lovable_dev" />
-    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --primary-bg: #0a0a0a;
+        --secondary-bg: #111111;
+        --accent-bg: #1a1a1a;
+        --text-primary: #ffffff;
+        --text-secondary: #b0b0b0;
+        --text-muted: #808080;
+        --accent-color: #6366f1;
+        --accent-hover: #4f46e5;
+        --border-color: #2a2a2a;
+        --shadow-color: rgba(0, 0, 0, 0.5);
+        --gradient-primary: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+        --gradient-secondary: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+      }
+
+      body {
+        font-family: 'Inter', sans-serif;
+        background: var(--primary-bg);
+        color: var(--text-primary);
+        line-height: 1.6;
+        scroll-behavior: smooth;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+
+      /* Header */
+      header {
+        background: var(--secondary-bg);
+        padding: 1rem 0;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        text-decoration: none;
+        background: var(--gradient-primary);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      nav ul {
+        display: flex;
+        list-style: none;
+        gap: 2rem;
+      }
+
+      nav a {
+        color: var(--text-secondary);
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s ease;
+        position: relative;
+      }
+
+      nav a:hover {
+        color: var(--text-primary);
+      }
+
+      nav a::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--gradient-primary);
+        transition: width 0.3s ease;
+      }
+
+      nav a:hover::after {
+        width: 100%;
+      }
+
+      /* Hero Section */
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        padding-top: 80px;
+        background: var(--primary-bg);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.1) 0%, transparent 70%);
+        pointer-events: none;
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 1;
+      }
+
+      .hero h1 {
+        font-family: 'Playfair Display', serif;
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        font-weight: 700;
+        margin-bottom: 1rem;
+        background: var(--gradient-primary);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .hero .tagline {
+        font-size: 1.25rem;
+        color: var(--text-secondary);
+        margin-bottom: 2rem;
+        max-width: 600px;
+      }
+
+      .cta-button {
+        display: inline-block;
+        padding: 0.75rem 2rem;
+        background: var(--gradient-primary);
+        color: white;
+        text-decoration: none;
+        border-radius: 50px;
+        font-weight: 600;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
+      }
+
+      .cta-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 30px rgba(99, 102, 241, 0.4);
+      }
+
+      /* Section Styles */
+      section {
+        padding: 5rem 0;
+      }
+
+      .section-title {
+        font-family: 'Playfair Display', serif;
+        font-size: 2.5rem;
+        font-weight: 600;
+        text-align: center;
+        margin-bottom: 3rem;
+        color: var(--text-primary);
+      }
+
+      /* About Section */
+      .about {
+        background: var(--secondary-bg);
+      }
+
+      .about-content {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 3rem;
+        align-items: center;
+      }
+
+      .profile-image {
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        background: var(--gradient-secondary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 4rem;
+        color: var(--text-secondary);
+        margin: 0 auto;
+        box-shadow: 0 20px 40px var(--shadow-color);
+        transition: transform 0.3s ease;
+      }
+
+      .profile-image:hover {
+        transform: scale(1.05);
+      }
+
+      .about-text {
+        font-size: 1.1rem;
+        color: var(--text-secondary);
+        line-height: 1.8;
+      }
+
+      /* Projects Section */
+      .projects {
+        background: var(--primary-bg);
+      }
+
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+      }
+
+      .project-card {
+        background: var(--secondary-bg);
+        border-radius: 12px;
+        padding: 2rem;
+        border: 1px solid var(--border-color);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .project-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px var(--shadow-color);
+      }
+
+      .project-image {
+        width: 100%;
+        height: 200px;
+        background: var(--gradient-secondary);
+        border-radius: 8px;
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--text-muted);
+        font-size: 3rem;
+      }
+
+      .project-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: var(--text-primary);
+      }
+
+      .project-description {
+        color: var(--text-secondary);
+        line-height: 1.6;
+      }
+
+      /* Contact Section */
+      .contact {
+        background: var(--secondary-bg);
+      }
+
+      .contact-content {
+        text-align: center;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .contact-email {
+        font-size: 1.5rem;
+        color: var(--accent-color);
+        text-decoration: none;
+        margin-bottom: 2rem;
+        display: inline-block;
+        transition: color 0.3s ease;
+      }
+
+      .contact-email:hover {
+        color: var(--accent-hover);
+      }
+
+      .social-links {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        margin-top: 2rem;
+      }
+
+      .social-link {
+        width: 50px;
+        height: 50px;
+        background: var(--accent-bg);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--text-secondary);
+        text-decoration: none;
+        font-size: 1.25rem;
+        transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+      }
+
+      .social-link:hover {
+        background: var(--accent-color);
+        color: white;
+        transform: translateY(-3px);
+      }
+
+      /* Footer */
+      footer {
+        background: var(--primary-bg);
+        padding: 2rem 0;
+        text-align: center;
+        border-top: 1px solid var(--border-color);
+      }
+
+      footer p {
+        color: var(--text-muted);
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .container {
+          padding: 0 1rem;
+        }
+
+        .header-content {
+          flex-direction: column;
+          gap: 1rem;
+        }
+
+        nav ul {
+          gap: 1rem;
+        }
+
+        .hero {
+          text-align: center;
+        }
+
+        .about-content {
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
+
+        .profile-image {
+          width: 250px;
+          height: 250px;
+        }
+
+        .projects-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .social-links {
+          flex-wrap: wrap;
+        }
+      }
+
+      @media (max-width: 480px) {
+        nav ul {
+          flex-direction: column;
+          gap: 0.5rem;
+        }
+
+        .hero h1 {
+          font-size: 2rem;
+        }
+
+        .hero .tagline {
+          font-size: 1rem;
+        }
+
+        .section-title {
+          font-size: 2rem;
+        }
+
+        .profile-image {
+          width: 200px;
+          height: 200px;
+        }
+
+        .project-card {
+          padding: 1.5rem;
+        }
+      }
+    </style>
   </head>
 
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    <!-- Header -->
+    <header>
+      <div class="container">
+        <div class="header-content">
+          <a href="#" class="logo">Mubdiu Mohammad Lam</a>
+          <nav>
+            <ul>
+              <li><a href="#about">About</a></li>
+              <li><a href="#projects">Projects</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <h1>Mubdiu Mohammad Lam</h1>
+          <p class="tagline">Creative Developer & Digital Innovator crafting beautiful experiences through code</p>
+          <a href="#about" class="cta-button">Discover My Work</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+      <div class="container">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-content">
+          <div class="profile-image">
+            👨‍💻
+          </div>
+          <div class="about-text">
+            <p>Hello! I'm Mubdiu Mohammad Lam, a passionate developer with a love for creating digital experiences that make a difference. With expertise in modern web technologies and a keen eye for design, I bring ideas to life through clean, efficient code.</p>
+            <br>
+            <p>I specialize in full-stack development, user experience design, and innovative problem-solving. When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or mentoring aspiring developers.</p>
+            <br>
+            <p>I believe in the power of technology to transform lives and am committed to building solutions that are not only functional but also beautiful and accessible to everyone.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+      <div class="container">
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="projects-grid">
+          <div class="project-card">
+            <div class="project-image">🌐</div>
+            <h3 class="project-title">E-Commerce Platform</h3>
+            <p class="project-description">A modern, responsive e-commerce solution built with React and Node.js. Features include real-time inventory management, secure payment processing, and an intuitive admin dashboard.</p>
+          </div>
+          <div class="project-card">
+            <div class="project-image">📱</div>
+            <h3 class="project-title">Mobile Task Manager</h3>
+            <p class="project-description">A cross-platform mobile application for task management and productivity. Built with React Native, featuring offline sync, push notifications, and collaborative workspaces.</p>
+          </div>
+          <div class="project-card">
+            <div class="project-image">🎨</div>
+            <h3 class="project-title">Design System Library</h3>
+            <p class="project-description">A comprehensive design system and component library for consistent UI/UX across multiple products. Includes documentation, accessibility guidelines, and automated testing.</p>
+          </div>
+          <div class="project-card">
+            <div class="project-image">🔗</div>
+            <h3 class="project-title">Blockchain Analytics Tool</h3>
+            <p class="project-description">An advanced analytics platform for blockchain data visualization and insights. Features real-time transaction monitoring, trend analysis, and customizable dashboards.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+      <div class="container">
+        <h2 class="section-title">Let's Connect</h2>
+        <div class="contact-content">
+          <p style="color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 2rem;">Ready to bring your ideas to life? Let's discuss your next project.</p>
+          <a href="mailto:mubdiu.lam@email.com" class="contact-email">mubdiu.lam@email.com</a>
+          <div class="social-links">
+            <a href="#" class="social-link" title="GitHub">⚡</a>
+            <a href="#" class="social-link" title="LinkedIn">💼</a>
+            <a href="#" class="social-link" title="Twitter">🐦</a>
+            <a href="#" class="social-link" title="Instagram">📷</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <p>&copy; 2024 Mubdiu Mohammad Lam. All rights reserved.</p>
+      </div>
+    </footer>
   </body>
 </html>
